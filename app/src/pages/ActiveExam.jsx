@@ -1504,7 +1504,7 @@ if (questions.length === 0) {
                 </div>
             )}
 
-            {/* Background Atmospheric Effect */}
+            {/* Background Atmospheric Effects */}
             <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]"></div>
                 <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[100px]"></div>
