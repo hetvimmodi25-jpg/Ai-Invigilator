@@ -1,0 +1,318 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   Design Tokens
+   Two visual themes coexist in this app because it merges pages originally
+   built as separate mini-apps with two different (but related) design
+   systems. ":root" (a.k.a. ".theme-classic") is the Poppins / bright-blue
+   look used by the Landing, Student Login, Register and Student Dashboard
+   pages. ".theme-admin" is the Inter / Material-3 look used by the Admin
+   Login, Admin Overview and Active Exam Monitoring pages. Every color,
+   font and spacing utility below is wired through CSS variables so both
+   themes can render side-by-side pixel-accurately without editing the
+   original component markup or class names.
+   ========================================================================== */
+
+:root,
+.theme-classic {
+  /* Defaulting to Dark Theme based on user request */
+  --c-background: #0B0E14;
+  --c-on-background: #FFFFFF;
+
+  --c-surface: #131826;
+  --c-on-surface: #F8FAFC;
+  --c-surface-variant: #1E293B;
+  --c-on-surface-variant: #CBD5E1;
+  --c-surface-dim: #07090D;
+  --c-surface-container: #131826;
+  --c-surface-container-low: #0B0E14;
+  --c-surface-container-high: #1E293B;
+  --c-surface-container-highest: #334155;
+  --c-surface-container-lowest: #05060A;
+  --c-inverse-surface: #F8FAFC;
+
+  --c-primary: #3B82F6;
+  --c-primary-fixed: #93C5FD;
+  --c-primary-container: #1D4ED8;
+  --c-on-primary: #FFFFFF;
+  --c-on-primary-container: #BFDBFE;
+  --c-on-primary-fixed-variant: #1E40AF;
+
+  --c-secondary: #9333EA;
+  --c-secondary-container: #6B21A8;
+  --c-on-secondary: #FFFFFF;
+  --c-on-secondary-container: #E9D5FF;
+
+  --c-tertiary: #A855F7;
+  --c-tertiary-container: #7E22CE;
+  --c-on-tertiary: #FFFFFF;
+  --c-on-tertiary-container: #E9D5FF;
+
+  --c-error: #EF4444;
+  --c-error-container: #991B1B;
+  --c-on-error: #FFFFFF;
+  --c-on-error-container: #FECACA;
+
+  --c-outline: #475569;
+  --c-outline-variant: #334155;
+
+  /* typography */
+  --f-sans: 'Poppins', sans-serif;
+  --f-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --fs-display-lg-size: 3.5rem;  --fs-display-lg-lh: 1.1;  --fs-display-lg-fw: 700;
+  --fs-headline-lg-size: 2.25rem; --fs-headline-lg-lh: 1.2; --fs-headline-lg-fw: 700;
+  --fs-headline-md-size: 1.75rem; --fs-headline-md-lh: 1.25; --fs-headline-md-fw: 600;
+  --fs-title-lg-size: 1.375rem;  --fs-title-lg-lh: 1.3;  --fs-title-lg-fw: 600;
+  --fs-body-lg-size: 1.125rem;   --fs-body-lg-lh: 1.6;
+  --fs-body-md-size: 1rem;       --fs-body-md-lh: 1.6;
+  --fs-label-md-size: 0.875rem;  --fs-label-md-lh: 1.4;  --fs-label-md-fw: 500;
+  --fs-mono-sm-size: 0.8125rem;  --fs-mono-sm-lh: 1.4;
+
+  /* spacing */
+  --sp-xs: 0.5rem;
+  --sp-sm: 0.75rem;
+  --sp-base: 1rem;
+  --sp-md: 1.25rem;
+  --sp-lg: 2rem;
+  --sp-xl: 4rem;
+  --sp-gutter: 1.5rem;
+}
+
+.theme-admin {
+  /* colors */
+  --c-background: #f8fafc;
+  --c-on-background: #1e293b;
+
+  --c-surface: #ffffff;
+  --c-on-surface: #1e293b;
+  --c-surface-variant: #e2e8f0;
+  --c-on-surface-variant: #475569;
+  --c-surface-dim: #cbd5e1;
+  --c-surface-container: #f1f5f9;
+  --c-surface-container-low: #f8fafc;
+  --c-surface-container-high: #eef2f7;
+  --c-surface-container-highest: #e2e8f0;
+  --c-surface-container-lowest: #ffffff;
+  --c-inverse-surface: #0f172a;
+
+  --c-primary: #004ac6;
+  --c-primary-fixed: #dce6ff;
+  --c-primary-container: #dce6ff;
+  --c-on-primary: #ffffff;
+  --c-on-primary-container: #001a41;
+  --c-on-primary-fixed-variant: #003a9e;
+
+  --c-secondary: #712ae2;
+  --c-secondary-container: #ece0ff;
+  --c-on-secondary: #ffffff;
+  --c-on-secondary-container: #29104f;
+
+  --c-tertiary: #9333ea;
+  --c-tertiary-container: #f3e8ff;
+  --c-on-tertiary: #ffffff;
+  --c-on-tertiary-container: #3b0764;
+
+  --c-error: #dc2626;
+  --c-error-container: #fee2e2;
+  --c-on-error: #ffffff;
+  --c-on-error-container: #7f1d1d;
+
+  --c-outline: #94a3b8;
+  --c-outline-variant: #cbd5e1;
+
+  /* typography */
+  --f-sans: 'Inter', sans-serif;
+  --f-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --fs-display-lg-size: 3.5rem;   --fs-display-lg-lh: 1.1;  --fs-display-lg-fw: 700;
+  --fs-headline-lg-size: 32px;    --fs-headline-lg-lh: 40px; --fs-headline-lg-fw: 600;
+  --fs-headline-md-size: 28px;    --fs-headline-md-lh: 36px; --fs-headline-md-fw: 600;
+  --fs-title-lg-size: 22px;       --fs-title-lg-lh: 28px;   --fs-title-lg-fw: 600;
+  --fs-body-lg-size: 16px;        --fs-body-lg-lh: 24px;
+  --fs-body-md-size: 14px;        --fs-body-md-lh: 20px;
+  --fs-label-md-size: 12px;       --fs-label-md-lh: 16px;   --fs-label-md-fw: 600;
+  --fs-mono-sm-size: 13px;        --fs-mono-sm-lh: 18px;
+
+  /* spacing */
+  --sp-xs: 4px;
+  --sp-sm: 8px;
+  --sp-base: 16px;
+  --sp-md: 16px;
+  --sp-lg: 24px;
+  --sp-xl: 32px;
+  --sp-gutter: 24px;
+}
+
+.dark:root,
+.dark .theme-classic {
+  /* dark colors for classic theme */
+  --c-background: #0f172a;
+  --c-on-background: #f8fafc;
+
+  --c-surface: #1e293b;
+  --c-on-surface: #f1f5f9;
+  --c-surface-variant: #334155;
+  --c-on-surface-variant: #cbd5e1;
+  --c-surface-dim: #020617;
+  --c-surface-container: #1e293b;
+  --c-surface-container-low: #0f172a;
+  --c-surface-container-high: #334155;
+  --c-surface-container-highest: #475569;
+  --c-surface-container-lowest: #020617;
+  --c-inverse-surface: #f8fafc;
+
+  --c-primary: #3b82f6;
+  --c-primary-fixed: #93c5fd;
+  --c-primary-container: #1d4ed8;
+  --c-on-primary: #eff6ff;
+  --c-on-primary-container: #bfdbfe;
+  --c-on-primary-fixed-variant: #1e40af;
+
+  --c-secondary: #9333ea;
+  --c-secondary-container: #6b21a8;
+  --c-on-secondary: #faf5ff;
+  --c-on-secondary-container: #e9d5ff;
+
+  --c-tertiary: #a855f7;
+  --c-tertiary-container: #7e22ce;
+  --c-on-tertiary: #faf5ff;
+  --c-on-tertiary-container: #e9d5ff;
+
+  --c-error: #ef4444;
+  --c-error-container: #991b1b;
+  --c-on-error: #fef2f2;
+  --c-on-error-container: #fecaca;
+
+  --c-outline: #475569;
+  --c-outline-variant: #334155;
+}
+
+.dark .theme-admin {
+  /* dark colors for admin theme */
+  --c-background: #0f172a;
+  --c-on-background: #f8fafc;
+
+  --c-surface: #1e293b;
+  --c-on-surface: #f1f5f9;
+  --c-surface-variant: #334155;
+  --c-on-surface-variant: #cbd5e1;
+  --c-surface-dim: #020617;
+  --c-surface-container: #1e293b;
+  --c-surface-container-low: #0f172a;
+  --c-surface-container-high: #334155;
+  --c-surface-container-highest: #475569;
+  --c-surface-container-lowest: #020617;
+  --c-inverse-surface: #f8fafc;
+
+  --c-primary: #3b82f6;
+  --c-primary-fixed: #93c5fd;
+  --c-primary-container: #1d4ed8;
+  --c-on-primary: #eff6ff;
+  --c-on-primary-container: #bfdbfe;
+  --c-on-primary-fixed-variant: #1e40af;
+
+  --c-secondary: #9333ea;
+  --c-secondary-container: #6b21a8;
+  --c-on-secondary: #faf5ff;
+  --c-on-secondary-container: #e9d5ff;
+
+  --c-tertiary: #a855f7;
+  --c-tertiary-container: #7e22ce;
+  --c-on-tertiary: #faf5ff;
+  --c-on-tertiary-container: #e9d5ff;
+
+  --c-error: #ef4444;
+  --c-error-container: #991b1b;
+  --c-on-error: #fef2f2;
+  --c-on-error-container: #fecaca;
+
+  --c-outline: #475569;
+  --c-outline-variant: #334155;
+}
+
+
+body {
+  margin: 0;
+  background-color: var(--c-background);
+  color: var(--c-on-background);
+  font-family: var(--f-sans);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ==========================================================================
+   Animations & Dynamic Effects
+   ========================================================================== */
+
+/* Molten Violet Caustics */
+@keyframes liquidCaustics {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-molten-caustics {
+  background: linear-gradient(-45deg, #0B0E14, #1D153B, #0A245C, #2E0B4A);
+  background-size: 400% 400%;
+  animation: liquidCaustics 12s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-molten-caustics::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 40%);
+  animation: liquidCaustics 20s ease-in-out infinite alternate;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Button Hover Animations */
+.btn-animate {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-animate::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.btn-animate:hover::after {
+  left: 100%;
+}
+
+.btn-animate:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px -5px rgba(113, 42, 226, 0.5), 0 8px 10px -6px rgba(59, 130, 246, 0.5);
+}
+
+.btn-animate:active {
+  transform: translateY(1px) scale(0.98);
+}
