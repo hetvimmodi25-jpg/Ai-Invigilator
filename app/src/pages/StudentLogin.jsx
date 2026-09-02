@@ -60,7 +60,7 @@ const StudentLogin = () => {
         `
       }} />
 
-      {/* Background Molten Metal */}
+      {/* Background Molten Metal (Dark Mode Only) */}
       <MoltenMetal
         color1="#020617"
         color2="#1e3a8a"
@@ -80,7 +80,7 @@ const StudentLogin = () => {
         mouseInteraction={true}
         mouseStrength={0.3}
         opacity={1.0}
-        className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
+        className="fixed inset-0 pointer-events-none z-0 overflow-hidden hidden dark:block"
       />
       <div ref={particleContainerRef} className="hidden"></div>
 
@@ -88,11 +88,12 @@ const StudentLogin = () => {
       <header className="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm">
         <div className="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
           <button type="button" onClick={() => navigate('/')} className="font-headline-md text-headline-md font-bold text-primary cursor-pointer hover:opacity-80 active:scale-95 transition-all">AI-Invigilator</button>
-          <div className="flex gap-md">
+          <div className="flex items-center gap-md">
+            <ThemeToggle />
             <button onClick={() => navigate('/admin-login')} className="text-on-surface-variant font-label-md text-label-md hover:bg-primary/5 px-md py-sm rounded-lg transition-colors cursor-pointer active:scale-95 transition-transform">
               Admin Login
             </button>
-            <button className="bg-primary-container text-on-primary-container font-label-md text-label-md px-md py-sm rounded-lg shadow-sm cursor-pointer active:scale-95 transition-transform">
+            <button className="bg-primary-container text-on-primary-container font-label-md text-label-md px-md py-sm rounded-lg shadow-sm cursor-pointer active:scale-95 transition-transform font-bold">
               Student Login
             </button>
           </div>
@@ -109,22 +110,22 @@ const StudentLogin = () => {
 
         {/* Centered Glassmorphism Card */}
         <div className="relative z-10 w-full max-w-[480px] p-md">
-          <div className="glass-card rounded-[32px] p-xl shadow-sm border border-outline-variant/30">
+          <div className="glass-card rounded-[32px] p-xl shadow-xl border border-outline-variant/30">
             
             {/* Branding & Identity */}
             <div className="text-center mb-lg">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl primary-gradient text-white mb-md shadow-md">
                 <span className="material-symbols-outlined !text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>psychology</span>
               </div>
-              <h1 className="font-headline-lg text-headline-lg text-slate-900 mb-xs">Welcome Back</h1>
-              <p className="font-body-md text-body-md text-slate-600">Secure Session Authentication</p>
+              <h1 className="font-headline-lg text-headline-lg text-slate-900 dark:text-white font-extrabold mb-xs">Welcome Back</h1>
+              <p className="font-body-md text-body-md text-slate-600 dark:text-slate-300 font-medium">Secure Session Authentication</p>
             </div>
 
             {/* Success Message: Registration */}
             {registeredMessage && (
               <div className="mb-lg p-md bg-green-100/50 border border-green-200 rounded-xl flex gap-md items-start">
                 <span className="material-symbols-outlined text-green-600 !text-[20px]">check_circle</span>
-                <p className="font-body-md text-body-md text-green-800">{registeredMessage}</p>
+                <p className="font-body-md text-body-md text-green-800 font-medium">{registeredMessage}</p>
               </div>
             )}
 
@@ -132,22 +133,20 @@ const StudentLogin = () => {
             {error && (
               <div className="mb-lg p-md bg-red-100/50 border border-red-200 rounded-xl flex gap-md items-start">
                 <span className="material-symbols-outlined text-red-600 !text-[20px]">error</span>
-                <p className="font-body-md text-body-md text-red-800">{error}</p>
+                <p className="font-body-md text-body-md text-red-800 font-medium">{error}</p>
               </div>
             )}
-
-
 
             {/* Login Form */}
             <form className="space-y-lg" onSubmit={handleSubmit}>
               
               {/* Email Field */}
               <div className="relative">
-                <label className="block font-label-md text-label-md text-slate-700 mb-xs ml-1" htmlFor="email">Email Address</label>
+                <label className="block font-label-md text-label-md text-slate-700 dark:text-slate-300 font-semibold mb-xs ml-1" htmlFor="email">Email Address</label>
                 <div className="relative flex items-center">
                   <span className="material-symbols-outlined absolute left-4 text-slate-400 !text-[20px]">mail</span>
                   <input 
-                    className="w-full h-12 pl-12 pr-4 bg-white/50 border border-slate-300 rounded-xl font-body-md text-slate-900 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all outline-none" 
+                    className="w-full h-12 pl-12 pr-4 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl font-body-md text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all outline-none" 
                     id="email" 
                     placeholder="student@university.edu" 
                     type="email"
@@ -162,13 +161,13 @@ const StudentLogin = () => {
               {/* Password Field */}
               <div className="relative">
                 <div className="flex justify-between items-center mb-xs">
-                  <label className="font-label-md text-label-md text-slate-700 ml-1" htmlFor="password">Password</label>
-                  <Link className="font-label-md text-label-md text-primary hover:underline" to="/forgot-password">Forgot Password?</Link>
+                  <label className="font-label-md text-label-md text-slate-700 dark:text-slate-300 font-semibold ml-1" htmlFor="password">Password</label>
+                  <Link className="font-label-md text-label-md text-primary font-bold hover:underline" to="/forgot-password">Forgot Password?</Link>
                 </div>
                 <div className="relative flex items-center">
                   <span className="material-symbols-outlined absolute left-4 text-slate-400 !text-[20px]">lock</span>
                   <input 
-                    className="w-full h-12 pl-12 pr-12 bg-white/50 border border-slate-300 rounded-xl font-body-md text-slate-900 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all outline-none" 
+                    className="w-full h-12 pl-12 pr-12 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl font-body-md text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all outline-none" 
                     id="password" 
                     placeholder="••••••••" 
                     type={showPassword ? "text" : "password"}
@@ -180,7 +179,7 @@ const StudentLogin = () => {
                   <button 
                     type="button" 
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 text-slate-400 hover:text-slate-600 transition-colors focus:outline-none flex items-center"
+                    className="absolute right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors focus:outline-none flex items-center cursor-pointer"
                   >
                     <span className="material-symbols-outlined !text-[20px]">
                       {showPassword ? 'visibility' : 'visibility_off'}
@@ -191,7 +190,7 @@ const StudentLogin = () => {
 
               {/* Primary Login Button */}
               <button 
-                className="w-full h-14 primary-gradient text-white font-title-lg text-title-lg rounded-xl shadow-md hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-sm disabled:opacity-60" 
+                className="w-full h-14 primary-gradient text-white font-title-lg text-title-lg font-bold rounded-xl shadow-md hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-sm disabled:opacity-60 cursor-pointer" 
                 type="submit"
                 disabled={isSubmitting}
               >
@@ -202,20 +201,20 @@ const StudentLogin = () => {
 
             {/* Registration Anchor */}
             <div className="mt-xl text-center">
-              <p className="font-body-md text-body-md text-slate-600">
+              <p className="font-body-md text-body-md text-slate-600 dark:text-slate-400 font-medium">
                 First time using AI-Invigilator?{' '}
-                <Link className="text-primary font-semibold hover:underline" to="/register">Register Account</Link>
+                <Link className="text-primary font-bold hover:underline" to="/register">Register Account</Link>
               </p>
             </div>
           </div>
 
           {/* Integrity Badges */}
-          <div className="mt-lg flex justify-center gap-lg opacity-40 grayscale">
-            <div className="flex items-center gap-xs font-label-md text-[10px] tracking-widest uppercase text-white">
+          <div className="mt-lg flex justify-center gap-lg opacity-60">
+            <div className="flex items-center gap-xs font-label-md text-[10px] tracking-widest uppercase text-slate-600 dark:text-slate-400 font-semibold">
               <span className="material-symbols-outlined !text-[14px]">shield</span>
               AES-256 SECURED
             </div>
-            <div className="flex items-center gap-xs font-label-md text-[10px] tracking-widest uppercase text-white">
+            <div className="flex items-center gap-xs font-label-md text-[10px] tracking-widest uppercase text-slate-600 dark:text-slate-400 font-semibold">
               <span className="material-symbols-outlined !text-[14px]">auto_awesome</span>
               AI-POWERED
             </div>
@@ -228,10 +227,10 @@ const StudentLogin = () => {
         <div className="flex flex-col md:flex-row justify-between items-center px-gutter gap-lg max-w-container-max mx-auto">
           <button type="button" onClick={() => navigate('/')} className="font-title-lg text-title-lg font-bold text-primary cursor-pointer hover:opacity-80 transition-opacity">AI-Invigilator</button>
           <div className="flex flex-wrap justify-center gap-lg">
-            <a className="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#privacy">Privacy Policy</a>
-            <a className="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#terms">Terms of Service</a>
-            <a className="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#security">Security Whitepaper</a>
-            <a className="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#support">Support</a>
+            <a className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#privacy">Privacy Policy</a>
+            <a className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#terms">Terms of Service</a>
+            <a className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#security">Security Whitepaper</a>
+            <a className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#support">Support</a>
           </div>
           <p className="font-body-md text-body-md text-on-surface-variant">© 2026 AI-Invigilator. Secure. Objective. Sophisticated.</p>
         </div>

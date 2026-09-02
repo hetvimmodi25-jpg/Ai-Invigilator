@@ -122,7 +122,7 @@ const AIGenerator = () => {
   const handleGenerate = async (e) => {
     if (e) e.preventDefault();
     if (!topic && !excerpt) {
-      alert('Please enter a syllabus topic or upload PowerPoint presentations / documents.');
+      alert('please enter a syllabus topic or upload PowerPoint presentations / documents.');
       return;
     }
 

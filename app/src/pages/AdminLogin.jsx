@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
+import ThemeToggle from '../components/ThemeToggle';
 import MoltenMetal from '../components/MoltenMetal';
 
 const AdminLogin = () => {
@@ -38,21 +39,21 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="theme-admin dark min-h-screen flex flex-col font-body-md text-white overflow-x-hidden relative">
+    <div className="bg-background text-on-surface min-h-screen flex flex-col font-body-md overflow-x-hidden relative">
       {/* Embedded Styles */}
       <style dangerouslySetInnerHTML={{ __html: `
         .glass-card {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(226, 232, 240, 1);
             box-shadow: 0 4px 20px rgba(30, 41, 59, 0.05);
         }
         .dark .glass-card {
-            background: rgba(30, 41, 59, 0.8);
+            background: rgba(30, 41, 59, 0.85);
             border: 1px solid rgba(71, 85, 105, 0.5);
         }
         .glass-card:hover {
-            border-image: linear-gradient(to right, #004ac6, #712ae2) 1;
+            border-color: #004ac6;
             box-shadow: 0 12px 40px rgba(30, 41, 59, 0.12);
         }
         .primary-gradient-btn {
@@ -67,10 +68,9 @@ const AdminLogin = () => {
             border-color: #004ac6;
             box-shadow: 0 0 0 4px rgba(0, 74, 198, 0.1);
         }
-
       `}} />
 
-      {/* Background Molten Metal */}
+      {/* Background Molten Metal (Dark Mode Only) */}
       <MoltenMetal
         color1="#020617"
         color2="#1e3a8a"
@@ -90,40 +90,41 @@ const AdminLogin = () => {
         mouseInteraction={true}
         mouseStrength={0.3}
         opacity={1.0}
-        className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
+        className="fixed inset-0 pointer-events-none z-0 overflow-hidden hidden dark:block"
       />
 
       {/* TopAppBar */}
-      <header className="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm">
+      <header className="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm">
         <div className="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
           <button type="button" onClick={() => navigate('/')} className="flex items-center gap-sm cursor-pointer hover:opacity-80 active:scale-95 transition-all">
             <span className="material-symbols-outlined text-primary text-headline-md" style={{ fontVariationSettings: "'FILL' 1" }}>security</span>
-            <span className="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">AI-Invigilator</span>
+            <span className="font-headline-md text-headline-md font-bold text-primary">AI-Invigilator</span>
           </button>
           <div className="flex items-center gap-md">
-            <button type="button" onClick={() => navigate('/')} className="flex items-center gap-xs text-slate-300 font-label-md text-label-md hover:bg-primary/5 transition-colors px-md py-sm rounded-lg cursor-pointer active:scale-95">
+            <ThemeToggle />
+            <button type="button" onClick={() => navigate('/')} className="flex items-center gap-xs text-on-surface-variant font-label-md text-label-md hover:bg-primary/5 transition-colors px-md py-sm rounded-lg cursor-pointer active:scale-95">
               <span className="material-symbols-outlined text-[18px]">arrow_back</span>
               Back to Home
             </button>
-            <Link className="text-slate-300 font-label-md text-label-md hover:bg-primary/5 transition-colors px-md py-sm rounded-lg cursor-pointer active:scale-95" to="/student-login">Student Login</Link>
-            <a className="text-primary border-b-2 border-primary font-label-md text-label-md px-md py-sm cursor-default" href="#">Admin Login</a>
+            <Link className="text-on-surface-variant font-label-md text-label-md hover:bg-primary/5 transition-colors px-md py-sm rounded-lg cursor-pointer active:scale-95" to="/student-login">Student Login</Link>
+            <a className="text-primary border-b-2 border-primary font-label-md text-label-md px-md py-sm cursor-default font-bold" href="#">Admin Login</a>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow flex items-center justify-center pt-16 px-gutter relative">
-        {/* Abstract Decoration */}
+      <main className="flex-grow flex items-center justify-center pt-16 px-gutter relative z-10">
+        {/* Ambient Atmosphere */}
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10"></div>
         <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary/5 rounded-full blur-3xl -z-10"></div>
         
         <div className="w-full max-w-[480px] py-xl">
           {/* Glass Login Card */}
-          <div className="glass-card rounded-2xl p-lg md:p-xl transition-all duration-300">
+          <div className="glass-card rounded-2xl p-lg md:p-xl transition-all duration-300 border border-outline-variant/30 shadow-xl">
             <div className="flex flex-col gap-sm mb-lg">
-              <span className="text-label-md font-label-md text-primary tracking-widest uppercase">Restricted Access</span>
-              <h1 className="font-headline-lg text-headline-lg text-white">Proctor Console</h1>
-              <p className="font-body-lg text-body-lg text-slate-300">Enter your administrative credentials to access the invigilation dashboard.</p>
+              <span className="text-label-md font-label-md text-primary tracking-widest uppercase font-bold">Restricted Access</span>
+              <h1 className="font-headline-lg text-headline-lg text-slate-900 dark:text-white font-extrabold">Proctor Console</h1>
+              <p className="font-body-lg text-body-lg text-slate-600 dark:text-slate-300 font-medium">Enter your administrative credentials to access the invigilation dashboard.</p>
             </div>
 
             <form className="flex flex-col gap-lg" onSubmit={handleSubmit}>
@@ -131,14 +132,14 @@ const AdminLogin = () => {
               {error && (
                 <div className="p-md bg-error-container/50 border border-error/20 rounded-xl flex gap-md items-start">
                   <span className="material-symbols-outlined text-error text-[20px]">error</span>
-                  <p className="font-body-md text-body-md text-on-error-container">{error}</p>
+                  <p className="font-body-md text-body-md text-on-error-container font-medium">{error}</p>
                 </div>
               )}
 
               {/* Identity Input */}
               <div className="flex flex-col gap-xs">
                 <label 
-                  className={`font-label-md text-label-md ml-xs transition-colors ${isIdFocused ? 'text-primary' : 'text-slate-300'}`} 
+                  className={`font-label-md text-label-md ml-xs font-semibold transition-colors ${isIdFocused ? 'text-primary' : 'text-slate-700 dark:text-slate-300'}`} 
                   htmlFor="admin-id"
                 >
                   Admin Email
@@ -146,12 +147,13 @@ const AdminLogin = () => {
                 <div className="relative">
                   <span className="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline text-[20px]">badge</span>
                   <input 
-                    className="w-full h-12 pl-11 pr-md rounded-xl border border-outline-variant bg-surface-container-low font-body-md text-body-md input-focus-glow transition-all" 
+                    className="w-full h-12 pl-11 pr-md rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 font-body-md text-body-md input-focus-glow transition-all" 
                     id="admin-id" 
                     placeholder="admin@aiinvigilator.com" 
                     type="text" 
                     value={email}
-                    onChange={(e)=>setEmail(e.target.value)}                    onFocus={() => setIsIdFocused(true)}
+                    onChange={(e)=>setEmail(e.target.value)}
+                    onFocus={() => setIsIdFocused(true)}
                     onBlur={() => setIsIdFocused(false)}
                     required
                   />
@@ -162,17 +164,17 @@ const AdminLogin = () => {
               <div className="flex flex-col gap-xs">
                 <div className="flex justify-between items-center px-xs">
                   <label 
-                    className={`font-label-md text-label-md transition-colors ${isPasswordFocused ? 'text-primary' : 'text-slate-300'}`} 
+                    className={`font-label-md text-label-md font-semibold transition-colors ${isPasswordFocused ? 'text-primary' : 'text-slate-700 dark:text-slate-300'}`} 
                     htmlFor="password"
                   >
                     Secure Password
                   </label>
-                  <a className="text-primary font-label-md text-label-md hover:underline" href="#">Forgot?</a>
+                  <a className="text-primary font-label-md text-label-md font-bold hover:underline" href="#">Forgot?</a>
                 </div>
                 <div className="relative">
                   <span className="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline text-[20px]">lock</span>
                   <input 
-                    className="w-full h-12 pl-11 pr-md rounded-xl border border-outline-variant bg-surface-container-low font-body-md text-body-md input-focus-glow transition-all" 
+                    className="w-full h-12 pl-11 pr-md rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 font-body-md text-body-md input-focus-glow transition-all" 
                     id="password" 
                     placeholder="••••••••••••" 
                     type="password"
@@ -188,11 +190,11 @@ const AdminLogin = () => {
               {/* Options */}
               <div className="flex items-center gap-sm px-xs">
                 <input 
-                  className="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" 
+                  className="w-4 h-4 rounded border-slate-300 dark:border-slate-700 text-primary focus:ring-primary/20 cursor-pointer" 
                   id="remember" 
                   type="checkbox" 
                 />
-                <label className="font-body-md text-body-md text-slate-300 cursor-pointer" htmlFor="remember">
+                <label className="font-body-md text-body-md text-slate-700 dark:text-slate-300 cursor-pointer font-medium" htmlFor="remember">
                   Trust this device for 30 days
                 </label>
               </div>
@@ -201,7 +203,7 @@ const AdminLogin = () => {
               <button 
                 ref={btnRef}
                 onMouseMove={handleBtnMouseMove}
-                className="primary-gradient-btn w-full h-14 rounded-xl text-on-primary font-title-lg text-title-lg shadow-md hover:opacity-90 flex items-center justify-center gap-sm disabled:opacity-60" 
+                className="primary-gradient-btn w-full h-14 rounded-xl text-white font-title-lg text-title-lg font-bold shadow-md hover:opacity-90 flex items-center justify-center gap-sm disabled:opacity-60 cursor-pointer" 
                 type="submit"
                 disabled={isSubmitting}
               >
@@ -213,11 +215,11 @@ const AdminLogin = () => {
             {/* Additional Info */}
             <div className="mt-xl pt-lg border-t border-outline-variant/30">
               <div className="flex flex-col gap-md">
-                <div className="flex items-start gap-md p-md bg-slate-800/50 rounded-xl">
+                <div className="flex items-start gap-md p-md bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-xl">
                   <span className="material-symbols-outlined text-primary text-[24px]">verified_user</span>
                   <div className="flex flex-col">
-                    <span className="font-label-md text-label-md text-white">Compliance Mode Active</span>
-                    <p className="font-mono-sm text-mono-sm text-slate-300">All administrative actions are logged for audit integrity.</p>
+                    <span className="font-label-md text-label-md text-slate-900 dark:text-white font-bold">Compliance Mode Active</span>
+                    <p className="font-mono-sm text-mono-sm text-slate-600 dark:text-slate-300">All administrative actions are logged for audit integrity.</p>
                   </div>
                 </div>
               </div>
@@ -225,24 +227,24 @@ const AdminLogin = () => {
           </div>
           
           {/* Footer-ish subtext */}
-          <p className="text-center mt-lg font-body-md text-body-md text-outline">
-            Institutional SSO required? <a className="text-primary font-semibold hover:underline" href="#">Connect Directory</a>
+          <p className="text-center mt-lg font-body-md text-body-md text-slate-600 dark:text-slate-400 font-medium">
+            Institutional SSO required? <a className="text-primary font-bold hover:underline" href="#">Connect Directory</a>
           </p>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="relative w-full py-xl mt-auto bg-slate-900/50 border-t border-outline-variant/30">
+      <footer className="relative w-full py-xl mt-auto bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant/30">
         <div className="flex flex-col md:flex-row justify-between items-center px-gutter gap-lg max-w-container-max mx-auto">
           <div className="flex flex-col gap-xs items-center md:items-start">
             <span onClick={() => navigate('/')} className="font-title-lg text-title-lg font-bold text-primary cursor-pointer hover:opacity-80 transition-opacity">AI-Invigilator</span>
-            <p className="font-body-md text-body-md text-slate-300">© 2026 AI-Invigilator. Secure. Objective. Sophisticated.</p>
+            <p className="font-body-md text-body-md text-on-surface-variant">© 2026 AI-Invigilator. Secure. Objective. Sophisticated.</p>
           </div>
           <nav className="flex flex-wrap justify-center gap-lg">
-            <a className="text-slate-300 font-body-md text-body-md hover:text-secondary transition-colors" href="#">Privacy Policy</a>
-            <a className="text-slate-300 font-body-md text-body-md hover:text-secondary transition-colors" href="#">Terms of Service</a>
-            <a className="text-slate-300 font-body-md text-body-md hover:text-secondary transition-colors" href="#">Security Whitepaper</a>
-            <a className="text-slate-300 font-body-md text-body-md hover:text-secondary transition-colors" href="#">Support</a>
+            <a className="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">Privacy Policy</a>
+            <a className="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">Terms of Service</a>
+            <a className="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">Security Whitepaper</a>
+            <a className="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">Support</a>
           </nav>
         </div>
       </footer>
