@@ -161,44 +161,44 @@ const LandingPage = () => {
             mouseInteraction={true}
             mouseStrength={0.3}
             opacity={1.0}
-            className="absolute inset-0 z-0"
+            className="absolute inset-0 z-0 hidden dark:block"
           />
           
           <div className="max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-xl items-center relative z-10">
             <div className="space-y-lg z-10">
-              <div className="inline-flex items-center gap-xs px-3 py-1 bg-white/20 text-white rounded-full border border-white/30 backdrop-blur-md shadow-sm">
+              <div className="inline-flex items-center gap-xs px-3 py-1 bg-primary/10 dark:bg-white/20 text-primary dark:text-white rounded-full border border-primary/20 dark:border-white/30 backdrop-blur-md shadow-sm">
                 <span className="material-symbols-outlined text-[18px]">verified</span>
-                <span className="font-label-md text-label-md uppercase tracking-wider">Next-Gen Proctoring</span>
+                <span className="font-label-md text-label-md uppercase tracking-wider font-semibold">Next-Gen Proctoring</span>
               </div>
-              <h1 className="font-display-lg text-display-lg lg:text-[64px] leading-tight text-white drop-shadow-lg">
+              <h1 className="font-display-lg text-display-lg lg:text-[64px] leading-tight text-slate-900 dark:text-white font-extrabold drop-shadow-sm">
                 AI-Invigilator
               </h1>
-              <p className="font-title-lg text-title-lg text-white/90 max-w-xl leading-relaxed drop-shadow-md">
+              <p className="font-title-lg text-title-lg text-slate-700 dark:text-white/90 max-w-xl leading-relaxed font-medium">
                 Smart AI-Based Online Examination Proctoring System. Experience clinical reliability with forward-thinking intelligence.
               </p>
               <div className="flex flex-wrap gap-md pt-md">
-                <button onClick={() => navigate('/student-login')} className="gradient-button-primary text-white px-8 py-4 rounded-xl font-semibold flex items-center gap-sm btn-animate shadow-xl border border-white/20">
+                <button onClick={() => navigate('/student-login')} className="gradient-button-primary text-white px-8 py-4 rounded-xl font-semibold flex items-center gap-sm btn-animate shadow-xl border border-white/20 cursor-pointer">
                   Launch Assessment <span className="material-symbols-outlined">arrow_forward</span>
                 </button>
-                <button onClick={() => setIsVideoModalOpen(true)} className="bg-white/90 px-8 py-4 rounded-xl font-extrabold text-slate-900 border border-white/50 hover:bg-white flex items-center gap-sm btn-animate shadow-xl backdrop-blur-md transition-all">
+                <button onClick={() => setIsVideoModalOpen(true)} className="bg-slate-900/5 dark:bg-white/90 px-8 py-4 rounded-xl font-extrabold text-slate-900 dark:text-slate-900 border border-slate-300 dark:border-white/50 hover:bg-slate-900/10 dark:hover:bg-white flex items-center gap-sm btn-animate shadow-xl backdrop-blur-md transition-all cursor-pointer">
                   Request Demo <span className="material-symbols-outlined">play_circle</span>
                 </button>
               </div>
               
               <div className="flex items-center gap-xl pt-lg">
                 <div className="text-center">
-                  <p className="font-headline-md text-white drop-shadow-md">99.9%</p>
-                  <p className="font-label-md text-white/80 uppercase drop-shadow-sm">Accuracy</p>
+                  <p className="font-headline-md text-slate-900 dark:text-white font-bold">99.9%</p>
+                  <p className="font-label-md text-slate-600 dark:text-white/80 uppercase font-semibold">Accuracy</p>
                 </div>
-                <div className="h-10 w-px bg-white/30"></div>
+                <div className="h-10 w-px bg-slate-300 dark:bg-white/30"></div>
                 <div className="text-center">
-                  <p className="font-headline-md text-white drop-shadow-md">1M+</p>
-                  <p className="font-label-md text-white/80 uppercase drop-shadow-sm">Exams</p>
+                  <p className="font-headline-md text-slate-900 dark:text-white font-bold">1M+</p>
+                  <p className="font-label-md text-slate-600 dark:text-white/80 uppercase font-semibold">Exams</p>
                 </div>
-                <div className="h-10 w-px bg-white/30"></div>
+                <div className="h-10 w-px bg-slate-300 dark:bg-white/30"></div>
                 <div className="text-center">
-                  <p className="font-headline-md text-white drop-shadow-md">24/7</p>
-                  <p className="font-label-md text-white/80 uppercase drop-shadow-sm">Monitoring</p>
+                  <p className="font-headline-md text-slate-900 dark:text-white font-bold">24/7</p>
+                  <p className="font-label-md text-slate-600 dark:text-white/80 uppercase font-semibold">Monitoring</p>
                 </div>
               </div>
             </div>

@@ -17,46 +17,46 @@
 
 :root,
 .theme-classic {
-  /* Defaulting to Dark Theme based on user request */
-  --c-background: #0B0E14;
-  --c-on-background: #FFFFFF;
+  /* Light Theme */
+  --c-background: #FFFFFF;
+  --c-on-background: #0F172A;
 
-  --c-surface: #131826;
-  --c-on-surface: #F8FAFC;
-  --c-surface-variant: #1E293B;
-  --c-on-surface-variant: #CBD5E1;
-  --c-surface-dim: #07090D;
-  --c-surface-container: #131826;
-  --c-surface-container-low: #0B0E14;
-  --c-surface-container-high: #1E293B;
-  --c-surface-container-highest: #334155;
-  --c-surface-container-lowest: #05060A;
-  --c-inverse-surface: #F8FAFC;
+  --c-surface: #FFFFFF;
+  --c-on-surface: #0F172A;
+  --c-surface-variant: #F1F5F9;
+  --c-on-surface-variant: #334155;
+  --c-surface-dim: #E2E8F0;
+  --c-surface-container: #F8FAFC;
+  --c-surface-container-low: #FFFFFF;
+  --c-surface-container-high: #F1F5F9;
+  --c-surface-container-highest: #E2E8F0;
+  --c-surface-container-lowest: #FFFFFF;
+  --c-inverse-surface: #0F172A;
 
-  --c-primary: #3B82F6;
-  --c-primary-fixed: #93C5FD;
-  --c-primary-container: #1D4ED8;
+  --c-primary: #2563EB;
+  --c-primary-fixed: #DBEAFE;
+  --c-primary-container: #DBEAFE;
   --c-on-primary: #FFFFFF;
-  --c-on-primary-container: #BFDBFE;
-  --c-on-primary-fixed-variant: #1E40AF;
+  --c-on-primary-container: #1E40AF;
+  --c-on-primary-fixed-variant: #1E3A8A;
 
   --c-secondary: #9333EA;
-  --c-secondary-container: #6B21A8;
+  --c-secondary-container: #F3E8FF;
   --c-on-secondary: #FFFFFF;
-  --c-on-secondary-container: #E9D5FF;
+  --c-on-secondary-container: #581C87;
 
   --c-tertiary: #A855F7;
-  --c-tertiary-container: #7E22CE;
+  --c-tertiary-container: #F3E8FF;
   --c-on-tertiary: #FFFFFF;
-  --c-on-tertiary-container: #E9D5FF;
+  --c-on-tertiary-container: #581C87;
 
   --c-error: #EF4444;
-  --c-error-container: #991B1B;
+  --c-error-container: #FEE2E2;
   --c-on-error: #FFFFFF;
-  --c-on-error-container: #FECACA;
+  --c-on-error-container: #991B1B;
 
-  --c-outline: #475569;
-  --c-outline-variant: #334155;
+  --c-outline: #CBD5E1;
+  --c-outline-variant: #E2E8F0;
 
   /* typography */
   --f-sans: 'Poppins', sans-serif;
